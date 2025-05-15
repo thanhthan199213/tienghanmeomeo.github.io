@@ -7,5 +7,13 @@ const questions = Array.from({ length: 40 }, (_, i) => ({
     `Đáp án C của câu ${i + 1}`,
     `Đáp án D của câu ${i + 1}`
   ],
+
+  question: `Câu ${i + 2}: Đây là nội dung câu hỏi số ${i + 2}?`,
+  options: [
+    `A`,
+    `B`,
+    `C`,
+    `D`
+  ],
   correctAnswer: 0 // Đáp án đúng là A
 }));
