@@ -1,14 +1,61 @@
-
 body {
   font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
   padding: 20px;
-  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 h1 {
   text-align: center;
 }
 
+.question {
+  margin-bottom: 20px;
+}
+
+.options label {
+  display: block;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  display: block;
+  margin: 20px auto;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+#result {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+/*diều hướng*/
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* danh sách câu */
 .question-grid {
   display: flex;
   flex-wrap: wrap;
@@ -45,10 +92,4 @@ h1 {
 
 .question-button.answered .dot {
   display: block;
-}
-
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
 }
