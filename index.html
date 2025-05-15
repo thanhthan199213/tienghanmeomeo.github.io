@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đề Thi Trắc Nghiệm</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>📝 Đề Thi Trắc Nghiệm</h1>
+  <div id="timer"></div>
+  <div id="question-grid" class="question-grid"></div>
+  <form id="quiz-form"></form>
+  <div class="navigation">
+    <button onclick="prevQuestion()">⬅️ Câu trước</button>
+    <button onclick="nextQuestion()">Câu tiếp theo ➡️</button>
+  </div>
+  <button onclick="submitQuiz()">✅ Nộp bài</button>
+  <div id="result"></div>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
