@@ -1,6 +1,11 @@
-
+// Đây là dữ liệu mẫu. Bạn có thể nạp từ file JSON ngoài hoặc API.
 const questions = Array.from({ length: 40 }, (_, i) => ({
-  question: `Câu hỏi số ${i + 1}: Nội dung câu hỏi?`,
-  options: ["Đáp án A", "Đáp án B", "Đáp án C", "Đáp án D"],
-  correctAnswer: Math.floor(Math.random() * 4)
+  question: `Câu ${i + 1}: Đây là nội dung câu hỏi số ${i + 1}?`,
+  options: [
+    `Đáp án A của câu ${i + 1}`,
+    `Đáp án B của câu ${i + 1}`,
+    `Đáp án C của câu ${i + 1}`,
+    `Đáp án D của câu ${i + 1}`
+  ],
+  correctAnswer: 0 // Đáp án đúng là A
 }));
