@@ -48,14 +48,14 @@ button:hover {
   margin-top: 20px;
 }
 
-/*diều hướng*/
+
 .navigation {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-/* danh sách câu */
+
 .question-grid {
   display: flex;
   flex-wrap: wrap;
