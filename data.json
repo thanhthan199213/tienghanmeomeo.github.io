@@ -1,1 +1,27 @@
+{
+  "Animals": [
+    {
+      "word": "cat",
+      "meaning": "con mèo",
+      "audio": "https://ssl.gstatic.com/dictionary/static/sounds/oxford/cat--_gb_1.mp3"
+    },
+    {
+      "word": "dog",
+      "meaning": "con chó",
+      "audio": "https://ssl.gstatic.com/dictionary/static/sounds/oxford/dog--_gb_1.mp3"
+    }
+  ],
+  "Technology": [
+    {
+      "word": "computer",
+      "meaning": "máy tính",
+      "audio": "https://ssl.gstatic.com/dictionary/static/sounds/oxford/computer--_gb_1.mp3"
+    },
+    {
+      "word": "keyboard",
+      "meaning": "bàn phím",
+      "audio": "https://ssl.gstatic.com/dictionary/static/sounds/oxford/keyboard--_gb_1.mp3"
+    }
+  ]
+}
 
