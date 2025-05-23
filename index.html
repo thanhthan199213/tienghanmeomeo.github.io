@@ -60,15 +60,15 @@
 <body>
   <h1>Flashcard Từ Vựng</h1>
 
-  <div id="themeButtons" class="theme-buttons"></div>
+<!--   <div id="themeButtons" class="theme-buttons"></div> -->
 
   <div class="flashcard" onclick="flipCard()">
     <div class="front" id="cardFront">Từ</div>
     <div class="back" id="cardBack">Nghĩa</div>
   </div>
 
-<!--   <label for="themeSelector">Chọn chủ đề:</label>
-  <select id="themeSelector" onchange="loadTheme(this.value)"></select> -->
+  <label for="themeSelector">Chọn chủ đề:</label>
+  <select id="themeSelector" onchange="loadTheme(this.value)"></select>
 
   <button onclick="nextCard()">Từ tiếp theo</button>
   <button id="audioBtn">🔊 Phát âm</button>
