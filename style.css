@@ -138,3 +138,27 @@ body {
   transform: rotateY(360deg);
 }
 
+.theme-buttons {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.theme-buttons button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.theme-buttons button:hover,
+.theme-buttons button.active {
+  background-color: #007bff;
+  color: white;
+}
+
