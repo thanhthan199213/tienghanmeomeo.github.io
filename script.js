@@ -155,7 +155,7 @@ fetch('data.json')
 
 function populateThemeSelector(themes) {
   const container = document.getElementById("themeButtons");
-  container.innerHTML = ""; // clear old buttons
+  container.innerHTML = "";
   themes.forEach(theme => {
     const btn = document.createElement("button");
     btn.textContent = theme;
@@ -167,6 +167,7 @@ function populateThemeSelector(themes) {
     container.appendChild(btn);
   });
 }
+
 
 
 
