@@ -32,32 +32,20 @@
 </html>
  -->
 
- <header>
-  <h1>Xin chào, tôi là [Tên bạn]</h1>
-  <p>Web Developer | Designer | Blogger</p>
-</header>
-
-<nav>
-  <a href="#about">Giới thiệu</a>
-  <a href="#projects">Dự án</a>
-  <a href="#contact">Liên hệ</a>
-</nav>
-
-<section id="about">
-  <h2>Về tôi</h2>
-  <p>Một đoạn mô tả ngắn gọn, có ảnh đại diện.</p>
-</section>
-
-<section id="projects">
-  <h2>Dự án nổi bật</h2>
-  <!-- Danh sách dự án -->
-</section>
-
-<section id="contact">
-  <h2>Liên hệ</h2>
-  <!-- Form liên hệ hoặc info mạng xã hội -->
-</section>
-
-<footer>
-  <p>&copy; 2025 [Tên bạn]</p>
-</footer>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Học từ vựng</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Flashcard Từ Vựng</h1>
+  <div class="flashcard" onclick="flipCard()">
+    <div class="front" id="cardFront">apple</div>
+    <div class="back" id="cardBack">quả táo</div>
+  </div>
+  <button onclick="nextCard()">Từ tiếp theo</button>
+  <script src="script.js"></script>
+</body>
+</html>
