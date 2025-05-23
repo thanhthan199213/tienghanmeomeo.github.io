@@ -32,7 +32,7 @@
 </html>
  -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -48,4 +48,30 @@
   <button onclick="nextCard()">Từ tiếp theo</button>
   <script src="script.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Học từ vựng</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Flashcard Từ Vựng</h1>
+
+  <label for="themeSelector">Chọn chủ đề:</label>
+  <select id="themeSelector" onchange="loadTheme(this.value)"></select>
+
+  <div class="flashcard" onclick="flipCard()">
+    <div class="front" id="cardFront">Từ</div>
+    <div class="back" id="cardBack">Nghĩa</div>
+  </div>
+
+  <button onclick="nextCard()">Từ tiếp theo</button>
+  <button id="audioBtn">🔊 Phát âm</button>
+
+  <script src="script.js"></script>
+</body>
 </html>
+
