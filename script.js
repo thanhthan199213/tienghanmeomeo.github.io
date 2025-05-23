@@ -105,29 +105,94 @@
 // }
 
 
-const words = [
-  { word: "apple", meaning: "quả táo" },
-  { word: "computer", meaning: "máy tính" },
-  { word: "book", meaning: "quyển sách" },
-];
+// const words = [
+//   { word: "apple", meaning: "quả táo" },
+//   { word: "computer", meaning: "máy tính" },
+//   { word: "book", meaning: "quyển sách" },
+// ];
 
-let current = 0;
+// let current = 0;
 
-function updateCard() {
-  document.getElementById("cardFront").textContent = words[current].word;
-  document.getElementById("cardBack").textContent = words[current].meaning;
-  document.querySelector('.flashcard').classList.remove("flipped");
+// function updateCard() {
+//   document.getElementById("cardFront").textContent = words[current].word;
+//   document.getElementById("cardBack").textContent = words[current].meaning;
+//   document.querySelector('.flashcard').classList.remove("flipped");
+// }
+
+// function flipCard() {
+//   document.querySelector('.flashcard').classList.toggle("flipped");
+// }
+
+// function nextCard() {
+//   current = (current + 1) % words.length;
+//   updateCard();
+// }
+
+// updateCard();
+
+   let data = {};
+let currentWords = [];
+let currentIndex = 0;
+
+// Lấy dữ liệu từ JSON
+fetch('data.json')
+  .then(response => response.json())
+  .then(json => {
+    data = json;
+    const themes = Object.keys(data);
+    loadTheme(themes[0]);
+    populateThemeSelector(themes);
+  });
+
+function populateThemeSelector(themes) {
+  const select = document.getElementById("themeSelector");
+  themes.forEach(theme => {
+    const option = document.createElement("option");
+    option.value = theme;
+    option.textContent = theme;
+    select.appendChild(option);
+  });
 }
 
-function flipCard() {
-  document.querySelector('.flashcard').classList.toggle("flipped");
-}
-
-function nextCard() {
-  current = (current + 1) % words.length;
+function loadTheme(theme) {
+  currentWords = shuffleArray(data[theme]);
+  currentIndex = 0;
   updateCard();
 }
 
-updateCard();
+function updateCard() {
+  const word = currentWords[currentIndex];
+  document.getElementById("cardFront").textContent = word.word;
+  document.getElementById("cardBack").textContent = word.meaning;
+  document.getElementById("audioBtn").onclick = () => playAudio(word.audio);
+  document.querySelector(".flashcard").classList.remove("flipped");
 
-    
+  saveToLocalStorage(word);
+}
+
+function flipCard() {
+  document.querySelector(".flashcard").classList.toggle("flipped");
+}
+
+function nextCard() {
+  currentIndex = (currentIndex + 1) % currentWords.length;
+  updateCard();
+}
+
+function playAudio(audioUrl) {
+  const audio = new Audio(audioUrl);
+  audio.play();
+}
+
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function saveToLocalStorage(word) {
+  let history = JSON.parse(localStorage.getItem("vocabHistory")) || [];
+  if (!history.some(item => item.word === word.word)) {
+    history.push(word);
+    localStorage.setItem("vocabHistory", JSON.stringify(history));
+  }
+}
+ 
