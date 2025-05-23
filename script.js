@@ -130,11 +130,10 @@
 
 // updateCard();
 
-   let data = {};
+let data = {};
 let currentWords = [];
 let currentIndex = 0;
 
-// Lấy dữ liệu từ JSON
 fetch('data.json')
   .then(response => response.json())
   .then(json => {
@@ -166,7 +165,6 @@ function updateCard() {
   document.getElementById("cardBack").textContent = word.meaning;
   document.getElementById("audioBtn").onclick = () => playAudio(word.audio);
   document.querySelector(".flashcard").classList.remove("flipped");
-
   saveToLocalStorage(word);
 }
 
@@ -195,4 +193,3 @@ function saveToLocalStorage(word) {
     localStorage.setItem("vocabHistory", JSON.stringify(history));
   }
 }
- 
