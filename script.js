@@ -143,30 +143,30 @@ fetch('data.json')
     populateThemeSelector(themes);
   });
 
-// function populateThemeSelector(themes) {
-//   const select = document.getElementById("themeSelector");
-//   themes.forEach(theme => {
-//     const option = document.createElement("option");
-//     option.value = theme;
-//     option.textContent = theme;
-//     select.appendChild(option);
-//   });
-// }
-
 function populateThemeSelector(themes) {
-  const container = document.getElementById("themeButtons");
-  container.innerHTML = "";
+  const select = document.getElementById("themeSelector");
   themes.forEach(theme => {
-    const btn = document.createElement("button");
-    btn.textContent = theme;
-    btn.onclick = () => {
-      document.querySelectorAll("#themeButtons button").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      loadTheme(theme);
-    };
-    container.appendChild(btn);
+    const option = document.createElement("option");
+    option.value = theme;
+    option.textContent = theme;
+    select.appendChild(option);
   });
 }
+
+// function populateThemeSelector(themes) {
+//   const container = document.getElementById("themeButtons");
+//   container.innerHTML = "";
+//   themes.forEach(theme => {
+//     const btn = document.createElement("button");
+//     btn.textContent = theme;
+//     btn.onclick = () => {
+//       document.querySelectorAll("#themeButtons button").forEach(b => b.classList.remove("active"));
+//       btn.classList.add("active");
+//       loadTheme(theme);
+//     };
+//     container.appendChild(btn);
+//   });
+// }
 
 
 
