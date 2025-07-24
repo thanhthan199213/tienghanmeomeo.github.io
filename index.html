@@ -1,82 +1,44 @@
-<!-- <!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Đề thi trắc nghiệm</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  
-  <div class="container">
-    <h1>Đề thi trắc nghiệm</h1>
-    <form id="quiz-form"></form>
-    <button onclick="submitQuiz()">Nộp bài</button>
-    <div id="result"></div>
-  </div>
-  <!đồng hồ đếm ngược>
-  <div id="timer" style="text-align:center; font-size: 18px; margin: 10px 0;"></div>
-  
-  <div id="question-grid" class="question-grid"></div>
-  
-  <div class="navigation">
-  <button onclick="prevQuestion()">Câu trước</button>
-  <button onclick="nextQuestion()">Câu tiếp theo</button>
-</div>
-
-<button onclick="submitQuiz()">Nộp bài</button>
-
-  <script src="questions.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
- -->
-
-<!-- <!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Học từ vựng</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Flashcard Từ Vựng</h1>
-  <div class="flashcard" onclick="flipCard()">
-    <div class="front" id="cardFront">apple</div>
-    <div class="back" id="cardBack">quả táo</div>
-  </div>
-  <button onclick="nextCard()">Từ tiếp theo</button>
-  <script src="script.js"></script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Học từ vựng</title>
-  <link rel="stylesheet" href="style.css">
+  <title>구구단 퀴즈</title>
+  <style>
+    body {
+      font-family: 'Arial';
+      text-align: center;
+      margin-top: 100px;
+      font-size: 40px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Flashcard Từ Vựng</h1>
+  <div id="question">준비 중...</div>
 
-<!--   <div id="themeButtons" class="theme-buttons"></div> -->
+  <script>
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-  <div class="flashcard" onclick="flipCard()">
-    <div class="front" id="cardFront">Từ</div>
-    <div class="back" id="cardBack">Nghĩa</div>
-  </div>
+    function sayMultiplication(korSentence) {
+      const utterance = new SpeechSynthesisUtterance(korSentence);
+      utterance.lang = 'ko-KR';
+      speechSynthesis.speak(utterance);
+    }
 
-  <label for="themeSelector">Chọn chủ đề:</label>
-  <select id="themeSelector" onchange="loadTheme(this.value)"></select>
+    function generateQuestion() {
+      const a = getRandomInt(2, 9);
+      const b = getRandomInt(1, 9);
+      const questionText = `${a} × ${b} = ?`;
+      const koreanText = `${a} 곱하기 ${b}은?`;
 
-  <div>
-  <button onclick="prevCard()">⬅️ Previous</button>
-  <button onclick="nextCard()">➡️ Next</button>
-  <button id="audioBtn">🔊 Phát âm</button>
-</div>
-  
-  <script src="script.js"></script>
+      document.getElementById("question").textContent = questionText;
+      sayMultiplication(koreanText);
+    }
+
+    // Gọi lần đầu và sau đó mỗi 5 giây
+    generateQuestion();
+    setInterval(generateQuestion, 5000);
+  </script>
 </body>
 </html>
-
