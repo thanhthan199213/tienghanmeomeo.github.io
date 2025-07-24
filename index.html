@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>구구단 퀴즈</title>
-  <style>
-    body {
-      font-family: 'Arial';
-      text-align: center;
-      margin-top: 100px;
-      font-size: 40px;
-    }
-  </style>
-</head>
 <body>
-  <div id="question">준비 중...</div>
+  <button onclick="startQuiz()">퀴즈 시작</button>
+  <div id="question" style="margin-top: 50px;">준비 중...</div>
 
   <script>
+    let started = false;
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
@@ -31,14 +19,15 @@
       const b = getRandomInt(1, 9);
       const questionText = `${a} × ${b} = ?`;
       const koreanText = `${a} 곱하기 ${b}은?`;
-
       document.getElementById("question").textContent = questionText;
       sayMultiplication(koreanText);
     }
 
-    // Gọi lần đầu và sau đó mỗi 5 giây
-    generateQuestion();
-    setInterval(generateQuestion, 5000);
+    function startQuiz() {
+      if (started) return;
+      started = true;
+      generateQuestion();
+      setInterval(generateQuestion, 5000);
+    }
   </script>
 </body>
-</html>
