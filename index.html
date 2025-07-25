@@ -1,33 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>수학 퀴즈</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      font-size: 36px;
+    }
+    #korean {
+      margin-top: 20px;
+      font-size: 28px;
+      color: #444;
+    }
+    button {
+      font-size: 28px;
+      padding: 10px 30px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
 <body>
-  <button onclick="startQuiz()">퀴즈 시작</button>
-  <div id="question" style="margin-top: 50px;">준비 중...</div>
+
+  <div id="question">문제를 불러오는 중...</div>
+  <div id="korean"></div>
+  <button onclick="generateQuestion()">다음 문제</button>
 
   <script>
-    let started = false;
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    function sayMultiplication(korSentence) {
-      const utterance = new SpeechSynthesisUtterance(korSentence);
-      utterance.lang = 'ko-KR';
-      speechSynthesis.speak(utterance);
-    }
+    const numberToKorean = (num) => {
+      const digits = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
+      const units = ["", "십", "백", "천", "만"];
+      if (num === 0) return "영";
+      let result = "";
+      const str = num.toString();
+      const len = str.length;
+      for (let i = 0; i < len; i++) {
+        const digit = parseInt(str[i]);
+        const pos = len - i - 1;
+        if (digit !== 0) {
+          result += (digit === 1 && pos > 0 ? "" : digits[digit]) + units[pos];
+        }
+      }
+      return result;
+    };
+
+    const opToKorean = {
+      "+": "더하기",
+      "-": "빼기",
+      "×": "곱하기",
+      "÷": "나누기"
+    };
 
     function generateQuestion() {
-      const a = getRandomInt(2, 9);
-      const b = getRandomInt(1, 9);
-      const questionText = `${a} × ${b} = ?`;
-      const koreanText = `${a} 곱하기 ${b}은?`;
-      document.getElementById("question").textContent = questionText;
-      sayMultiplication(koreanText);
+      const type = getRandomInt(1, 4); // 1: +, 2: -, 3: ×, 4: ÷
+      let a, b, question = "", text = "", op = "";
+
+      if (type === 1) {
+        a = getRandomInt(0, 10000);
+        b = getRandomInt(0, 10000);
+        op = "+";
+      } else if (type === 2) {
+        a = getRandomInt(0, 10000);
+        b = getRandomInt(0, a); // tránh âm
+        op = "-";
+      } else if (type === 3) {
+        a = getRandomInt(1, 9);
+        b = getRandomInt(1, 9);
+        op = "×";
+      } else {
+        b = getRandomInt(1, 9);
+        const result = getRandomInt(1, 9);
+        a = b * result;
+        op = "÷";
+      }
+
+      // Hiển thị phép tính dạng số
+      question = `${a} ${op} ${b} = ?`;
+
+      // Chuyển sang tiếng Hàn
+      const koreanA = numberToKorean(a);
+      const koreanB = numberToKorean(b);
+      const koreanOp = opToKorean[op];
+      text = `${koreanA} ${koreanOp} ${koreanB} 는 무엇입니까?`;
+
+      // Hiển thị lên trang
+      document.getElementById("question").textContent = question;
+      document.getElementById("korean").textContent = text;
     }
 
-    function startQuiz() {
-      if (started) return;
-      started = true;
-      generateQuestion();
-      setInterval(generateQuestion, 5000);
-    }
+    // Load câu đầu
+    window.onload = generateQuestion;
   </script>
+
 </body>
+</html>
