@@ -7,7 +7,7 @@
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
-      margin-top: 100px;
+      margin-top: 80px;
       font-size: 36px;
     }
     #korean {
@@ -16,9 +16,10 @@
       color: #444;
     }
     button {
-      font-size: 28px;
-      padding: 10px 30px;
-      margin-top: 40px;
+      font-size: 26px;
+      padding: 10px 25px;
+      margin-top: 30px;
+      margin-right: 10px;
     }
   </style>
 </head>
@@ -27,6 +28,7 @@
   <div id="question">문제를 불러오는 중...</div>
   <div id="korean"></div>
   <button onclick="generateQuestion()">다음 문제</button>
+  <button onclick="speakKorean()">🔊 읽어주기</button>
 
   <script>
     function getRandomInt(min, max) {
@@ -57,6 +59,8 @@
       "÷": "나누기"
     };
 
+    let currentKoreanText = "";
+
     function generateQuestion() {
       const type = getRandomInt(1, 4); // 1: +, 2: -, 3: ×, 4: ÷
       let a, b, question = "", text = "", op = "";
@@ -67,7 +71,7 @@
         op = "+";
       } else if (type === 2) {
         a = getRandomInt(0, 10000);
-        b = getRandomInt(0, a); // tránh âm
+        b = getRandomInt(0, a);
         op = "-";
       } else if (type === 3) {
         a = getRandomInt(1, 9);
@@ -80,22 +84,43 @@
         op = "÷";
       }
 
-      // Hiển thị phép tính dạng số
+      // Dạng số
       question = `${a} ${op} ${b} = ?`;
 
-      // Chuyển sang tiếng Hàn
+      // Dạng Hàn
       const koreanA = numberToKorean(a);
       const koreanB = numberToKorean(b);
       const koreanOp = opToKorean[op];
       text = `${koreanA} ${koreanOp} ${koreanB} 는 무엇입니까?`;
 
-      // Hiển thị lên trang
+      // Hiển thị
       document.getElementById("question").textContent = question;
       document.getElementById("korean").textContent = text;
+
+      // Lưu để đọc
+      currentKoreanText = text;
     }
 
-    // Load câu đầu
-    window.onload = generateQuestion;
+    function speakKorean() {
+      const utterance = new SpeechSynthesisUtterance(currentKoreanText);
+      utterance.lang = "ko-KR";
+
+      // Nếu trình duyệt hỗ trợ, chọn giọng Hàn
+      const voices = speechSynthesis.getVoices();
+      const koreanVoice = voices.find(voice => voice.lang === 'ko-KR');
+      if (koreanVoice) {
+        utterance.voice = koreanVoice;
+      }
+
+      speechSynthesis.speak(utterance);
+    }
+
+    // Khởi tạo
+    window.onload = () => {
+      // Một số trình duyệt cần load voice trước
+      speechSynthesis.onvoiceschanged = () => {};
+      generateQuestion();
+    };
   </script>
 
 </body>
